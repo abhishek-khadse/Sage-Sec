@@ -1,55 +1,51 @@
-# MalwareSage
+# Sage Sec
 
-A comprehensive Malware Reverse Engineering Toolkit with both frontend and backend components.
+A comprehensive malware analysis platform that provides both static and dynamic analysis capabilities.
 
 ## Project Structure
 
 ```
-malwaresage/
-├── Frontend/           # React-based frontend application
-│   ├── src/           # Source code
-│   ├── public/        # Static files
-│   └── package.json   # Frontend dependencies
+Sage-Sec/
+├── Frontend/                 # React frontend
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── pages/          # Page components
+│   │   ├── services/       # API service functions
+│   │   └── utils/          # Utility functions
+│   ├── public/             # Static assets
+│   └── package.json        # Frontend dependencies
 │
-└── Backend/           # FastAPI-based backend application
-    ├── routes/        # API routes
-    ├── models/        # Database models
-    ├── services/      # Business logic
-    ├── utils/         # Utility functions
-    └── main.py        # Application entry point
+└── Backend/                 # FastAPI backend
+    ├── routes/             # API route handlers
+    ├── models/             # Database models
+    ├── services/           # Business logic
+    ├── utils/              # Utility functions
+    └── main.py             # FastAPI application
 ```
 
 ## Features
 
-### Backend
+### Backend (FastAPI)
 - File upload and management
-- Static analysis of PE/ELF files
-- Dynamic analysis in sandbox environment
-- ML-based malware classification
-- Real-time log streaming via WebSockets
-- JWT-based authentication
-- MongoDB database integration
-- Docker containerization
+- Static analysis (PE file analysis, strings extraction)
+- Dynamic analysis (sandbox execution)
+- User authentication and authorization
+- WebSocket support for real-time updates
+- Docker support for easy deployment
 
-### Frontend
-- Modern React-based UI
+### Frontend (React)
+- Modern, responsive UI with Material-UI
 - Real-time analysis monitoring
-- Interactive visualization of analysis results
+- Interactive analysis reports
 - Secure file upload interface
 - User authentication and management
-- Responsive design
 
 ## Prerequisites
 
-### Backend
-- Python 3.9+
-- MongoDB
+- Python 3.8+
+- Node.js 14+
 - Docker (optional)
-- Redis (for Celery tasks, optional)
-
-### Frontend
-- Node.js 16+
-- npm or yarn
+- PostgreSQL (optional)
 
 ## Installation
 
@@ -59,7 +55,7 @@ git clone https://github.com/abhishek-khadse/Sage-Sec.git
 cd Sage-Sec
 ```
 
-2. Backend Setup:
+2. Set up the backend:
 ```bash
 cd Backend
 python -m venv venv
@@ -67,65 +63,46 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-3. Frontend Setup:
+3. Set up the frontend:
 ```bash
-cd Frontend
+cd ../Frontend
 npm install
 ```
 
-4. Configure Environment Variables:
-- Create `.env` files in both Frontend and Backend directories
-- See respective README files for required variables
-
 ## Running the Application
 
-1. Start MongoDB:
-```bash
-# If using Docker
-docker run -d -p 27017:27017 mongo
-```
-
-2. Start the Backend:
+1. Start the backend:
 ```bash
 cd Backend
 uvicorn main:app --reload
 ```
 
-3. Start the Frontend:
+2. Start the frontend:
 ```bash
 cd Frontend
 npm start
 ```
 
-4. Access the application:
+The application will be available at:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
 
 ## Docker Deployment
 
-1. Build and run the Backend:
+1. Build and run with Docker Compose:
 ```bash
-cd Backend
-docker build -t malwaresage-backend .
-docker run -d -p 8000:8000 malwaresage-backend
-```
-
-2. Build and run the Frontend:
-```bash
-cd Frontend
-docker build -t malwaresage-frontend .
-docker run -d -p 3000:3000 malwaresage-frontend
+docker-compose up --build
 ```
 
 ## Security Considerations
 
-1. Always use HTTPS in production
-2. Keep your secret keys secure
-3. Implement rate limiting
-4. Validate all file uploads
-5. Run dynamic analysis in isolated environments
-6. Regularly update dependencies
+- All file uploads are scanned for malware before processing
+- Secure file storage with access controls
+- Rate limiting on API endpoints
+- JWT-based authentication
+- HTTPS support
+- Input validation and sanitization
 
 ## Contributing
 
